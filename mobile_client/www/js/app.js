@@ -7,6 +7,7 @@ angular.module('app', [
   'app.MakerMapFactory',
   'app.LoginController',
   'app.LoginFactory',
+  'app.SignupController',
   'app.HomeController',
   'app.SelectMapController'
 ])
