@@ -57,6 +57,19 @@ var Progress = sequelize.define("progress", {
   timestamps: false
 });
 
+var Review = sequelize.define("review", {
+  location_id: Sequelize.INTEGER,
+  user_id: Sequelize.INTEGER,
+  body: Sequelize.TEXT,
+  rating: Sequelize.INTEGER
+});
+
+var Photo = sequelize.define("photo", {
+  location_id: Sequelize.INTEGER,
+  user_id: Sequelize.INTEGER,
+  link: Sequelize.STRING
+})
+
 // User has many Maps, Map has one User
 Map.belongsTo(User, {
   foreignKey: 'user_id'
@@ -75,6 +88,7 @@ Location.belongsTo(Map, {
   foreignKey: 'map_id'
 });
 
+//Users have many Locations, Locations have many users
 Location.belongsToMany(User, {
   through: {
     model: Progress
@@ -89,6 +103,7 @@ User.belongsToMany(Location, {
   foreignKey: 'user_id'
 });
 
+//Map has many Progresses, Progresses have one map
 Map.hasMany(Progress, {
   foreignKey: 'map_id'
 });
@@ -97,11 +112,49 @@ Progress.belongsTo(Map, {
   foreignKey: 'map_id'
 });
 
+//Reviews have one user and one Location
+Review.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+User.hasMany(Review, {
+  foreignKey: 'user_id'
+});
+
+Review.belongsTo(Location, {
+  foreignKey: 'location_id'
+});
+
+Location.hasMany(Review, {
+  foreignKey: 'location_id'
+});
+
+//Photos have one Location and one Users
+Photo.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+User.hasMany(Photo, {
+  foreignKey: 'user_id'
+});
+
+Photo.belongsTo(Location, {
+  foreignKey: 'location_id'
+});
+
+Location.hasMany(Photo, {
+  foreignKey: 'location_id'
+});
+
 User.sync().then(function(){
   Map.sync().then(function(){
     Location.sync().then(function(){
       Progress.sync().then(function(){
-        buildMap();
+        Review.sync().then(function(){
+          Photo.sync().then(function(){
+            buildMap();
+          })
+        })
       });
     });
   });
@@ -111,4 +164,6 @@ exports.User = User;
 exports.Map = Map;
 exports.Location = Location;
 exports.Progress = Progress;
+exports.Review = Review;
+exports.Photo = Photo;
 exports.sequelize = sequelize;
