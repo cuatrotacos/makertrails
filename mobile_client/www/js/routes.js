@@ -7,11 +7,11 @@ angular.module('app.routes', [])
       templateUrl: 'templates/login.html',
       controller: 'LoginController'
     })
-    // .state('signup', {
-    //   url: '/signup',
-    //   templateUrl: 'templates/signup.html',
-    //   controller: 'SignupController'
-    // })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'templates/signup.html',
+      controller: 'SignupController'
+    })
     .state('home', {
       url: '/home',
       templateUrl: 'templates/home.html',
