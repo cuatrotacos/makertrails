@@ -1,0 +1,25 @@
+LOGIN<div>
+  <form name="loginForm" ng-submit="login()" novalidate>
+
+    <input type="text" autocomplete="off" name="usernamename" placeholder="username" ng-model="username" required>
+
+    <div ng-messages="loginForm.usernamename.$error" ng-if="loginForm.usernamename.$dirty">
+      <div class="section-small error" ng-message="required">Username required</div>
+    </div>
+
+    <input class="section password" type="password" autocomplete="off" name="passwordname"placeholder="password" ng-model = "password" required>
+
+    <div ng-messages = "loginForm.passwordname.$error" ng-if="loginForm.passwordname.$dirty">
+      <div class="section-small error" ng-message="required"><p>Password required<p></div>
+    </div>
+
+    <div class="section">
+      <button class="button" id="loginButton" type="submit" ng-disabled="loginForm.$invalid">login</button>
+    </div>
+
+    <div class="section">
+      <button class="button" id="signupButton" ui-sref="signup">Sign up</button>
+    </div>
+
+  </form>
+</div>

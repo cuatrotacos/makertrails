@@ -1,19 +1,25 @@
 {
-  "name": "streetcred",
-  "description": "Learn about the world around you",
-  "main": "index.js",
+  "name": "desktop_client",
+  "homepage": "https://github.com/Niicck/streetcred",
   "authors": [
     "Niicck <nickivons@yahoo.com>"
   ],
-  "license": "ISC",
+  "description": "",
+  "main": "",
   "moduleType": [],
-  "homepage": "",
-  "private": true,
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "gmaps": "gmaps.js#~0.4.22",
+    "jquery": "~2.2.0",
+    "underscore": "~1.8.3",
+    "angular": "^1.4.9",
+    "angular-ui-router": "ui-router#^0.2.17"
+  }
 }
