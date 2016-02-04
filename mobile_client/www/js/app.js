@@ -11,7 +11,9 @@ angular.module('app', [
   'app.SignupController',
   'app.HomeController',
   'app.SelectMapController',
-  'app.CameraFactory'
+  'app.CameraFactory',
+  'app.SelectMapFactory',
+  'app.SelectMapController'
 ])
 
 .run(function($ionicPlatform) {

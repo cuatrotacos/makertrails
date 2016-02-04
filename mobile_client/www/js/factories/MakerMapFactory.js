@@ -2,8 +2,9 @@ angular.module('app.MakerMapFactory', [])
 
 .factory('MakerMapFactory', makerMapFactory);
 
-function makerMapFactory($http, $ionicLoading, $ionicPopup, CollisionFactory) {
-
+function makerMapFactory($http, $ionicLoading, $ionicPopup, CollisionFactory, SelectMapFactory) {
+  // var mapSelected = SelectMapFactory.selectMap();
+  // console.log("this is map selected", mapSelected)
   var renderMap = function() {
     //displays loading animation
     $ionicLoading.show({
@@ -28,10 +29,10 @@ function makerMapFactory($http, $ionicLoading, $ionicPopup, CollisionFactory) {
   };
 
   var getMapLocations = function(http) {
-    $http.get('http://makertrails.herokuapp.com/progress')
+    $http.get('http://makertrails.herokuapp.com/location?mapId=8')
       .then(function(data) {
         var map = renderMap(); //returns map
-        var locations = data.data; //save locations array
+        var locations = data.data.locations; //save locations array
         console.log("locations data", data);
 
         //iterate through locations array, create marker for each location and place on map

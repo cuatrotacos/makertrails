@@ -1,57 +1,17 @@
 angular.module('app.SelectMapController', [])
 
-.controller('SelectMapController', selectMapController);
+.controller('SelectMapController', function($scope, SelectMapFactory){
+  $scope.data = {};
 
-function selectMapController($scope) {
-  $scope.allMaps = [{
-    id: 1,
-    name: "First Map",
-    description: "This is our first map ever.",
-    user_id: 1
-  }, {
-    id: 88,
-    name: "Santa Monica Pier Attractions",
-    description: "A map of a few attractions at or near the Santa Monica Pier",
-    user_id: 1
-  }, {
-    id: 5,
-    name: "newMap1",
-    description: "This is a newly created map",
-    user_id: null
-  }, {
-    id: 7,
-    name: "newMap1",
-    description: "This is a newly created map",
-    user_id: null
-  }, {
-    id: 10,
-    name: "newMap2",
-    description: "This is a newly created map",
-    user_id: null
-  }, {
-    id: 11,
-    name: "newMap2",
-    description: "This is a newly created map",
-    user_id: null
-  }, {
-    id: 13,
-    name: "newMap2",
-    description: "This is a newly created map",
-    user_id: null
-  }, {
-    id: 16,
-    name: "newMap2",
-    description: "This is a newly created map",
-    user_id: null
-  }, {
-    id: 19,
-    name: "newMap2",
-    description: "This is a newly created map",
-    user_id: null
-  }, {
-    id: 20,
-    name: "newMap2",
-    description: "This is a newly created map",
-    user_id: null
-  }]
-}
+  $scope.selectMap = function() {
+    SelectMapFactory.selectMap($scope.data.mapID);
+    console.log('inside selectMap', $scope.data.mapID)
+  }
+
+  $scope.$on('$ionicView.loaded', function(){
+    console.log('inside displayMaps')
+    $scope.allMaps = SelectMapFactory.displayMaps().then(function(maps){
+      $scope.allMaps = maps
+    });
+  })
+});

@@ -1,11 +1,13 @@
 <ion-view title="Select Map">
   <ion-content>
-    <div class="list">
-      <a class="item item-thumbnail-left" ui-sref="makerMap" ng-repeat="map in allMaps">
+    <button class="button button-block button-stable" ng-click="selectMap(data.mapID)">
+      <a class="item item-thumbnail-left" ng-model="data.mapID" ng-repeat="map in allMaps">
         <!-- <img ng-src="#"> -->
+        <!-- ui-sref="makerMap" --> 
         <h2>{{map.name}}</h2>
         <p>{{map.description}}</p>
       </a>
-    </div>
+    </button>
   </ion-content>
 </ion-view>
+
