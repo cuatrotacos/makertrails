@@ -1,31 +1,32 @@
-<div>
+<div id='authContainer'>
 
-  <form name="signupForm" ng-submit="signup()" novalidate>
+  <img src="http://www.foodsubs.com/Photos/tacoshell.jpg">
+  <form id='authCenter' name="signupForm" ng-submit="signup()" novalidate>
 
-    <input type="text" autocomplete="off" name="newusernamename" placeholder="username" ng-model="username" required>
+    <input class="section" type="text" autocomplete="off" name="newusername" placeholder="username" ng-model="username" required>
 
-    <div ng-messages="signupForm.newusernamename.$error" ng-if="signupForm.newusernamename.$dirty">
-      <div ng-message="required"><p>Username Required<p></div>
+    <div  class="section" ng-messages="signupForm.newusername.$error" ng-if="signupForm.newusername.$dirty">
+      <div class="section" ng-message="required">Username Required</div>
     </div>
 
-    <input type="password" autocomplete="off" name="passwordname" placeholder="password" ng-model="password" required>
+    <input class="section" type="password" autocomplete="off" name="passwordname" placeholder="password" ng-model="password" required>
 
-    <div ng-messages="signupForm.passwordname.$error" ng-if="signupForm.passwordname.$dirty">
-      <div ng-message="required"><p>Password Required<p></div>
+    <div class="section" ng-messages="signupForm.passwordname.$error" ng-if="signupForm.passwordname.$dirty">
+      <div class="section" ng-message="required">Password Required</div>
     </div>
 
-    <input type="email" autocomplete="off" name="emailname" placeholder="email" ng-model="email" required>
+    <input class="section" type="email" autocomplete="off" name="emailname" placeholder="email" ng-model="email" required>
 
-    <div ng-messages="signupForm.emailname.$error" ng-if="signupForm.emailname.$dirty">
-      <div ng-message="required"><p>Email Required<p></div>
+    <div class="section" ng-messages="signupForm.emailname.$error" ng-if="signupForm.emailname.$dirty">
+      <div class="section" ng-message="required">Email Required</div>
     </div>
 
-    <div>
-      <button type="submit" ng-disabled="signupForm.$invalid">Create Account</button>
+    <div class="section">
+      <button class="button" type="submit" ng-disabled="signupForm.$invalid">Create Account</button>
     </div>
 
-    <div>
-      <button ui-sref="login">Go back</button>
+    <div class="section">
+      <button class="button" ui-sref="login">Go back</button>
     </div>
 
   </form>

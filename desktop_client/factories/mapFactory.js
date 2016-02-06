@@ -1,7 +1,7 @@
 angular.module('App')
 .factory('MapFactory', MapFactory)
 
-function MapFactory(){
+function MapFactory($http, $q){
   var mapFactory = {}
 
   // Switch between local and deployed server
@@ -25,7 +25,9 @@ function MapFactory(){
   };
 
   mapFactory.refreshMap = function(selectedLocations, index, map) {
-    selectedLocations[index].editing = false;
+    if(index === undefined){
+      selectedLocations[index].editing = false;
+    }
     map.removeMarkers();
     _.each(selectedLocations, function(location){
       map.addMarker({
@@ -39,19 +41,29 @@ function MapFactory(){
     });
   };
 
-  mapFactory.postMap = function(newMap) {
-    $http ({
-      method: 'POST',
-      url: url + '/mapInfo',
-      data: newMap
-    })
-    .then(function(success){
-      console.log("You created a new Map!")
-    }, function(err){
-      console.log("You failed to create a new map");
-      console.log(err);
-    });
-  };
+  mapFactory.renameLocation = function (selectedLocations, index, newName) {
+    selectedLocations[index].name = newName;
+    selectedLocations[index].editing = false;
+  }
+
+  mapFactory.createMap = function (mapInfo, selectedLocations) {
+    var dfr = $q.defer()
+      $http ({
+        method: 'POST',
+        url: url + '/mapInfo',
+        data: {
+          mapInfo: mapInfo,
+          locationsInfo: selectedLocations
+        }
+      }).then(function (success) {
+        dfr.resolve(success)
+      },
+      function (err) {
+        console.log("+++ 57 mapFactory.js err: ", err)
+        dfr.reject("Map not created")
+      })
+      return dfr.promise;
+  }
 
   return mapFactory;
 }

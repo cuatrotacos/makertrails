@@ -1,15 +1,13 @@
 angular.module('app.SelectMapController', [])
 
-.controller('SelectMapController', function($scope, SelectMapFactory){
+.controller('SelectMapController', function($scope, $state, SelectMapFactory){
   $scope.data = {};
 
-  $scope.selectMap = function() {
-    SelectMapFactory.selectMap($scope.data.mapID);
-    console.log('inside selectMap', $scope.data.mapID)
+  $scope.selectMap = function(map) {
+    $state.go('makerMap', {mapID: map});
   }
 
   $scope.$on('$ionicView.loaded', function(){
-    console.log('inside displayMaps')
     $scope.allMaps = SelectMapFactory.displayMaps().then(function(maps){
       $scope.allMaps = maps
     });

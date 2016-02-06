@@ -16,6 +16,15 @@ router.post('/mapInfo', utils.checkUser, function (request, response) {
   controllers.mapInfo.post(request, response)
 })
 
+router.post('/photos', utils.checkUser, function (request, response) {
+  console.log("+++ 20 routes.js photos route hit")
+  controllers.photos.post(request, response)
+})
+
+router.get('/userMaps', utils.checkUser, function (request, response) {
+  controllers.userMaps.get(request, response)
+})
+
 router.get('/location', utils.checkUser, function (request, response) {
   controllers.location.get(request, response)
 })
@@ -41,6 +50,7 @@ router.post('/signup', function (request, response) {
 })
 
 router.post('/login', function (request, response) {
+  console.log("+++ 53 routes.js login")
   controllers.login.post(request, response)
 })
 

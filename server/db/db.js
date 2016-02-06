@@ -3,17 +3,17 @@ var buildMap = require("../test/buildMap.js").buildMap;
 var sequelize;
 
 // Use local DB
-sequelize = new Sequelize("trails", "root", "");
+// sequelize = new Sequelize("trails", "root", "");
 
 // Use real life DB
-// sequelize = new Sequelize(
-//   "cuatro_tacos",
-//   "cuatrotacos",
-//   "1Qaz2wsx3edc", {
-//     "host": "mysqlcluster6.registeredsite.com",
-//     "port": "3306"
-//   }
-// )
+sequelize = new Sequelize(
+  "cuatro_tacos",
+  "cuatrotacos",
+  "1Qaz2wsx3edc", {
+    "host": "mysqlcluster6.registeredsite.com",
+    "port": "3306"
+  }
+)
 
 
 var User = sequelize.define("user", {
@@ -67,7 +67,7 @@ var Review = sequelize.define("review", {
 var Photo = sequelize.define("photo", {
   location_id: Sequelize.INTEGER,
   user_id: Sequelize.INTEGER,
-  link: Sequelize.STRING
+  link: Sequelize.BLOB
 })
 
 // User has many Maps, Map has one User

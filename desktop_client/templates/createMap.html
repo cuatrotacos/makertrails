@@ -1,30 +1,40 @@
-<div ng-controller="MapController">
-<div>
+<div id="header">
+      <img src="/assets/icon-60.png">
+      <button class="redButton" id="logout" ng-controller="LogoutController" ng-click="logout()">Logout</button>
+</div>
+<div id="mapContainer">
   <trail-map ng-model="selectedLocations"></trail-map>
-  <form ng-submit="submitMap">
-    <label for="map-name">Trail Name:</label><br>
-    <input type="text" id="map-name" ng-model="mapInfo.name"><br>
-    <label for="map-description">Trail Description:</label><br>
-    <textarea id="map-description" ng-model="mapInfo.description" rows=4></textarea><br>
-    <p>Trail Locations:</p>
-    <ul>
-      <li ng-repeat="location in selectedLocations">
-        <div class="edit-location" ng-switch on="location.editing">
-          <div ng-switch-when="true">
-            <form>
-              <input type="text" ng-model="location.name" autofocus onfocus="this.select()">
-              <input type="submit" value="Save" ng-click="refreshMap(selectedLocations, $index, map)">
-              <button ng-click="removeLocation(selectedLocations, $index, map)">X</button><br>
-            </form>
-          </div>
-          <div ng-switch-when="false"
-              ng-click="location.editing = true">
-            {{location.name}}
-          </div>
+  <div id="trailsForm">
+    <form name="mapForm">
+      <label for="map-name">Give it a Name:</label><br>
+      <input type="text" id="map-name" name="trailname" ng-model="mapInfo.name" autocomplete="off" required><br>
+      <div ng-messages = "mapForm.trailname.$error" ng-if="mapForm.trailname.$dirty">
+        <label for="map-description">Give it a Description:</label><br>
+        <textarea id="map-description" name="traildesc" ng-model="mapInfo.description" rows=4 required></textarea><br>
+      </div>
+      <div ng-messages = "mapForm.traildesc.$error" ng-if="mapForm.traildesc.$dirty">
+        <div name="traillocs">
+          Select some Locations:
+          <ul>
+            <li ng-repeat="location in selectedLocations">
+              <div ng-switch on="location.editing">
+                <div ng-switch-when="true">
+                    <input type="text" ng-model="location.name">
+                    <button class="button" ng-click="renameLocation(selectedLocations, $index, location.name)">Save</button>
+                    <button class="redButton" ng-click="removeLocation(selectedLocations, $index, map)">X</button><br>
+                </div>
+                <div ng-switch-when="false"
+                    ng-click="location.editing = true">
+                  {{location.name}}
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-      </li>
-    </ul>
-    <input type="submit" id="submit" value="Submit Your Trail">
-  </form>
-  <button ng-controller="LogoutController" ng-click="logout()">Logout</button>
+        <div class="section">
+          <button class="button" ng-click="createMap()" ng-disabled="mapForm.$invalid">Create Map</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

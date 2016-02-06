@@ -25,7 +25,10 @@ angular.module('app.routes', [])
       url: '/makerMap',
       templateUrl: 'templates/makerMap.html',
       controller: 'MakerMapController',
-      authenticate: true
+      authenticate: true,
+      params: {
+        'mapID': null
+      }
     })
     .state('selectMap', {
       url: '/selectMap',
@@ -37,5 +40,4 @@ angular.module('app.routes', [])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
-
 });

@@ -1,5 +1,6 @@
 var _ = require("underscore");
 var session = require('express-session');
+var jwt  = require('jwt-simple');
 
 exports.formatProgress = function(locations, progresses) {
   for (var i=0; i < locations.length; i++) {
@@ -10,38 +11,33 @@ exports.formatProgress = function(locations, progresses) {
   return locations
 }
 
-//create session
-exports.createSession = function(request, response, isUser, callback) {
-  console.log("+++ 15 utils.js request.sessionID: ", request.sessionID)
-  request.session.regenerate(function() {
-    request.session.user = isUser.id
-    console.log("+++ 17 utils.js request.sessionID: ", request.sessionID)
-    callback(request.session.user, request.sessionID)
-  })
+var decodeToken = exports.decodeToken = function(request){
+  return jwt.decode(request.headers['makertrails-token'], 'magic-words');
+}
+
+//create token
+exports.createToken = function(request, response, isUser, callback) {
+  var token = jwt.encode({"userId": isUser.id, "username": isUser.name}, 'magic-words');
+  callback(token, isUser.name);
 }
 
 // Login Checks
-var isLoggedIn = function(request) {
-  return request.session ? !!request.session.user : false;
-}
-
-var isLoggedOut = function(request) {
-  return !!(request.session ? !!request.session.user : false);
+var isLoggedIn = function(token) {
+  var hash = jwt.decode(token, 'magic-words');
+  console.log("+++line 27 magic hash", hash);
+  return !!hash.userId;
 }
 
 // Reroute based on Auth status
 exports.checkUser = function(request, response, next) {
-  if (isLoggedIn(request)) {
-    next();
+  var token = request.headers['makertrails-token'];
+  if (!token || (token === "undefined")){
+    response.status(401).send("No token detected")
   } else {
-    response.redirect('/#/login')
-  }
-}
-
-exports.logout = function (request, response, callback) {
-  request.session.destroy();
-  request.session = null;
-  if(!request.session){
-    callback(true);
+    if (isLoggedIn(token)){
+      next()
+    } else {
+      response.sendStatus(401);
+    }
   }
 }

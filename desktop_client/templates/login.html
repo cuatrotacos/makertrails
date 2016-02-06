@@ -1,16 +1,18 @@
-LOGIN<div>
-  <form name="loginForm" ng-submit="login()" novalidate>
+<div id='authContainer'>
 
-    <input type="text" autocomplete="off" name="usernamename" placeholder="username" ng-model="username" required>
+  <img src="assets/makertrailsLarge.png">
+  <form id='authCenter' name="loginForm" ng-submit="login()" novalidate>
 
-    <div ng-messages="loginForm.usernamename.$error" ng-if="loginForm.usernamename.$dirty">
-      <div class="section-small error" ng-message="required">Username required</div>
+    <input  class="section" type="text" autocomplete="off" name="usernamename" placeholder="username" ng-model="username" required>
+
+    <div  class="section" ng-messages="loginForm.usernamename.$error" ng-if="loginForm.usernamename.$dirty">
+      <div class="section" ng-message="required">Username required</div>
     </div>
 
-    <input class="section password" type="password" autocomplete="off" name="passwordname"placeholder="password" ng-model = "password" required>
+    <input class="section" type="password" autocomplete="off" name="passwordname"placeholder="password" ng-model = "password" required>
 
-    <div ng-messages = "loginForm.passwordname.$error" ng-if="loginForm.passwordname.$dirty">
-      <div class="section-small error" ng-message="required"><p>Password required<p></div>
+    <div class="section" ng-messages = "loginForm.passwordname.$error" ng-if="loginForm.passwordname.$dirty">
+      <div class="section" ng-message="required">Password required</div>
     </div>
 
     <div class="section">

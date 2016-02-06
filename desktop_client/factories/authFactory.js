@@ -7,22 +7,15 @@ angular.module('App')
     // url = 'http://makertrails.herokuapp.com'
 
     function logout () {
-      window.localStorage.removeItem('makerTrailsSession');
-      window.localStorage.removeItem('makerTrailsUserID');
-      $http({
-        method: 'GET',
-        url: url + '/logout'
-      })
-      .then(function (loggedOut) {
-        if (loggedOut.status === 200) {
-          $state.go('login')
-          return
-        };
-      })
+      window.localStorage.removeItem("makertrails-token");
+      window.localStorage.removeItem('makertrails-username');
+      $http.defaults.headers.common['makertrails-token'] = "undefined";
+      $state.go('login');
+      return;
     }
 
     function authenticateFunction () {
-      return !!window.localStorage.makerTrailsSession
+      return !!window.localStorage["makertrails-token"]
     }
 
     var login = function(username, password, window){
@@ -35,8 +28,9 @@ angular.module('App')
         }
       })
       .then(function(success){
-        window.localStorage.setItem('makerTrailsSession', success.data.sessionID)
-        window.localStorage.setItem('makerTrailsUserID', success.data.userID)
+        window.localStorage.setItem('makertrails-token', success.data['makertrails-token']);
+        window.localStorage.setItem('makertrails-username', success.data.username);
+        $http.defaults.headers.common['makertrails-token'] = success.data['makertrails-token'];
         if (authenticateFunction()) {
           $state.go('createNewMap')
         }else{
@@ -56,8 +50,15 @@ angular.module('App')
           email: email
         }
       })
-      .then(function(isUser){
-        login(isUser.data.name, isUser.data.password, $window)
+      .then(function(success){
+        window.localStorage.setItem('makertrails-token', success.data['makertrails-token']);
+        window.localStorage.setItem('makertrails-username', success.data.username);
+        $http.defaults.headers.common['makertrails-token'] = success.data['makertrails-token'];
+        if (authenticateFunction()) {
+          $state.go('createNewMap')
+        }else{
+          $state.go('login')
+        }
       }, function(err){
         console.log(err);
       })

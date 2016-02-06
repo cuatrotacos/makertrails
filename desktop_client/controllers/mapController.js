@@ -13,11 +13,20 @@ function MapController($scope, MapFactory){
     lng: -118.4943091,
     zoom: 15
   });
-  $scope.submitMap = function(){
-    console.log("You at least clicked on submit map...")
-    // $scope.postMap({
-    //   "mapInfo": $scope.mapInfo,
-    //   "locationsInfo": $scope.selectedLocations
-    // })
+  $scope.createMap = function(){
+    if($scope.selectedLocations.length !== 0){
+      MapFactory.createMap($scope.mapInfo, $scope.selectedLocations)
+      .then(function (success) {
+        $scope.selectedLocations = [];
+        MapFactory.refreshMap($scope.selectedLocations, null, $scope.map)
+        $scope.mapInfo = {
+          "user": 1 //Hardcoded until backend is fixed
+        };
+      })
+    }
+  }
+  $scope.renameLocation = function (selectedLocations, index, newName) {
+    MapFactory.renameLocation(selectedLocations, index, newName)
+    MapFactory.refreshMap(selectedLocations, null, $scope.map)
   }
 }

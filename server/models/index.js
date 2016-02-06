@@ -17,6 +17,7 @@ module.exports = {
       })
     },
     post: function (newLocations, callback) {
+      console.log("+++ 20 index.js newLocations: ", newLocations)
       db.Map.create({
         name: newLocations.mapInfo.name,
         description: newLocations.mapInfo.description,
@@ -40,6 +41,32 @@ module.exports = {
     }
   },
 
+  userMaps: {
+    get: function (userId, callback) {
+      var userMaps = [];
+      db.Progress.findAll({
+          where: {
+            user_id: userId
+          }
+      })
+      .then(function (userMaps) {
+        var uniqueMapIds = [];
+        var mapInfo = [];
+        _.each(userMaps, function (eachMap) {
+          uniqueMapIds.push(eachMap.dataValues.map_id)
+        })
+        uniqueMapIds = _.uniq(uniqueMapIds);
+        _.each(uniqueMapIds, function (uniqueMapId) {
+          mapInfo.push(db.Map.findById(uniqueMapId))
+        })
+        Promise.all(mapInfo)
+        .then(function () {
+          callback(mapInfo)
+        })
+      })
+    }
+  },
+
   location: {
     get: function (mapId, callback) {
       db.Location.findAll({
@@ -54,7 +81,6 @@ module.exports = {
   },
 
   progress: {
-    post: function (mapId, locations, userId, callback) {},
     get: function (mapId, locations, userId, callback) {
       db.Progress.findAll({
         where: {
@@ -168,6 +194,20 @@ module.exports = {
         }else{
           callback(false);
         }
+      })
+    }
+  },
+
+  photos: {
+    post: function (locationId, userId, photoData, callback) {
+      db.Photo.create({
+        location_id: locationId,
+        user_id: userId,
+        link: photoData
+      })
+      .then(function (photoAdded) {
+        console.log("+++ 148 index.js photoAdded BE model: ", photoAdded)
+        callback(photoAdded)
       })
     }
   }
