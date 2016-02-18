@@ -1,28 +1,54 @@
-<div id='authContainer'>
+<div id='authContainer' class="login-page">
 
-  <img src="assets/makertrailsLarge.png">
-  <p>MakerTrails</p>
-  <form id='authCenter' name="loginForm" ng-submit="login()" novalidate>
-
-    <input  class="section" type="text" autocomplete="off" name="usernamename" placeholder="username" ng-model="username" required>
-
-    <div  class="section" ng-messages="loginForm.usernamename.$error" ng-if="loginForm.usernamename.$dirty">
-      <div class="section" ng-message="required">Username required</div>
+<nav id="sidebar-wrapper" class="sidebar-wrapper">
+  <div class="sidebar-nav">
+    <div class="navbar-header text-xs-center">
+      <!-- <div class="makertrailsLogo">MakerTrails</div> -->
+      <div class="logo"></div>
     </div>
 
-    <input class="section" type="password" autocomplete="off" name="passwordname"placeholder="password" ng-model = "password" required>
+    <form id='authCenter' class="form-signin text-xs-center" name="loginForm" ng-submit="login()" novalidate>
+        <h4>Log In</h4>
+        <div class="form-group">
+          <label for="usernamename" class="sr-only">Username</label>
+          <input class="form-control" type="text" autocomplete="off" name="usernamename" placeholder="username" ng-model="username" required>
+          <div  class="section" ng-messages="loginForm.usernamename.$error" ng-if="loginForm.usernamename.$dirty">
+            <p class="section text-error" ng-message="required">Username required</p>
+          </div>
+        </div>
 
-    <div class="section" ng-messages = "loginForm.passwordname.$error" ng-if="loginForm.passwordname.$dirty">
-      <div class="section" ng-message="required">Password required</div>
-    </div>
+        <div class="form-group">
+          <label for="passwordname" class="sr-only">Password</label>
+          <input class="form-control" type="password" autocomplete="off" name="passwordname"placeholder="password" ng-model = "password" required>
+          <div class="section" ng-messages = "loginForm.passwordname.$error" ng-if="loginForm.passwordname.$dirty">
+            <p class="section text-error" ng-message="required">Password required</p>
+          </div>
+        </div>
 
-    <div class="section">
-      <button class="button" id="loginButton" type="submit" ng-disabled="loginForm.$invalid">login</button>
-    </div>
+        <div class="button-group text-xs-center">
+          <button class="button btn btn-lg btn-primary btn-block" id="loginButton" type="submit" ng-disabled="loginForm.$invalid">Log In</button>
+          <a id="signupButton" ui-sref="signup">Sign up</a>
+        </div>
+      </form>
 
-    <div class="section">
-      <button class="button" id="signupButton" ui-sref="signup">Sign up</button>
-    </div>
+  </div>
+</nav>
 
-  </form>
+<footer class="footer-wrapper container">
+  <ul class="developers list-inline">
+    <li class="list-inline-item"><span>Built by:</span></li>
+    <li class="list-inline-item">Daniel De La Rosa <a href="https://github.com/dela1000" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/daniel-de-la-rosa-738763a" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    <li class="list-inline-item">Nick Ivons <a href="https://github.com/Niicck" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/nickivons" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    <li class="list-inline-item">Luis Gamero <a href="https://github.com/luisgamero" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/luis-gamero-967119108" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    <li class="list-inline-item">Juan Schaar <a href="https://github.com/juancho1" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/juanschaar" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+  </ul>
+  <ul class="developers list-inline">
+    <li class="list-inline-item"><span>Contributors:</span></li>
+    <li class="list-inline-item">VJ Aguilar <a href="https://github.com/shinyness" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/veejaye" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    <li class="list-inline-item">Thomas Leupp <a href="https://github.com/Cygnus2112" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/thomasleupp" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    <li class="list-inline-item">Joseph Martin <a href="https://github.com/jpranaymartin" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/jpranaymartin" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    <li class="list-inline-item">Kaushik Sahoo <a href="https://github.com/kaushiksahoo2000" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/kaushik-sahoo-39114274" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+  </ul>
+</footer>
+
 </div>

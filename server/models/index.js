@@ -13,8 +13,8 @@ module.exports = {
     get: function (callback) {
       db.Map.findAll()
       .then(function (allMaps) {
-        callback(allMaps)
-      })
+        callback(allMaps);
+      });
     },
     post: function (newLocations, callback) {
       db.Map.create({
@@ -25,45 +25,74 @@ module.exports = {
       .then(function (newMap) {
         var newLocationsCreated = [];
         _.each(newLocations.locationsInfo, function (newLocation) {
+          console.log('newLocation in DB ', newLocation);
           db.Location.create({
             map_id: newMap.id,
             lat: newLocation.lat,
             lon: newLocation.lng,
             name: newLocation.name,
+            msg: newLocation.msg,
             radius: newLocation.radius
-          })
-        })
+          });
+        });
         Promise.all(newLocationsCreated)
         .then(function () {
-          callback(newMap)
-        })
-      })
+          callback(newMap);
+        });
+      });
+    },
+    delete: function(mapId, callback) {
+      db.Map.findById(mapId)
+      .then(function(map) {
+      map.destroy();
+         callback();
+      });
     }
   },
 
   userMaps: {
     get: function (userId, callback) {
-      var userMaps = [];
-      db.Progress.findAll({
+      // var userMaps = [];
+      db.Map.findAll({
           where: {
             user_id: userId
           }
       })
       .then(function (userMaps) {
-        var uniqueMapIds = [];
+        // console.log("this is the first userMaps in models index.js", userMaps);
+        // var uniqueMapIds = [];
+        // var mapInfo = [];
+        // _.each(userMaps, function (eachMap) {
+        //   uniqueMapIds.push(eachMap.dataValues.map_id)
+        // })
+        // uniqueMapIds = _.uniq(uniqueMapIds);
+        // _.each(uniqueMapIds, function (uniqueMapId) {
+        //   mapInfo.push(db.Map.findById(uniqueMapId))
+        // })
+        // Promise.all(mapInfo)
+        // .then(function () {
+        //   console.log("this is userMaps in models index.js", userMaps);
+        //   callback(mapInfo);
+        // })
+
         var mapInfo = [];
-        _.each(userMaps, function (eachMap) {
-          uniqueMapIds.push(eachMap.dataValues.map_id)
-        })
-        uniqueMapIds = _.uniq(uniqueMapIds);
-        _.each(uniqueMapIds, function (uniqueMapId) {
-          mapInfo.push(db.Map.findById(uniqueMapId))
-        })
+        _.each(userMaps, function(singleMap){
+          mapInfo.push(db.Location.findAll({
+            where: {
+              map_id: singleMap.id
+            }
+          }));
+        });
         Promise.all(mapInfo)
         .then(function () {
-          callback(mapInfo)
-        })
-      })
+          _.each(userMaps, function(singleMap, id){
+           // console.log(mapInfo[id]);
+            singleMap.dataValues.locations = mapInfo[id];
+          });
+        //  console.log("this is userMaps in models index.js", userMaps);
+          callback(userMaps);
+        });
+      });
     }
   },
 
@@ -76,7 +105,7 @@ module.exports = {
       })
       .then(function (locations) {
         callback(locations)
-      })
+      });
     }
   },
 
@@ -169,8 +198,8 @@ module.exports = {
             Promise.all(queries)
             .then(function(){
               // callback(locationReviews)
-              console.log("+++ 171 index.js queries: ", queries)
-              console.log("+++ 173 index.js locationReviews: ", locationReviews)
+            //  console.log("+++ 171 index.js queries: ", queries)
+            //  console.log("+++ 173 index.js locationReviews: ", locationReviews)
               callback(locationReviews);
             })
       },
@@ -187,7 +216,7 @@ module.exports = {
       }).then(function(postedReview){
         callback(postedReview);
       }).catch(function(error){
-        console.log("+++ 178 index.js Review failed to post to db")
+       // console.log("+++ 178 index.js Review failed to post to db")
         console.log(error)
       })
     }

@@ -5,8 +5,8 @@ function locationInfoFactory($http, $q){
   function locationInfo(locationId){
     console.log('inside loction info infactory', locationId)
     var q = $q.defer();
-    // 'http://makertrails.herokuapp.com/photos?locationId='
-    $http.get('http://makertrails.herokuapp.com/review?locationId=' + locationId)
+    // 'https://makertrailsv2.herokuapp.com/photos?locationId='
+    $http.get('https://makertrailsv2.herokuapp.com/review?locationId=' + locationId)
     .then(function(success){
       q.resolve(success.data.data)
       // mapData = success.data.data;

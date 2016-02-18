@@ -1,34 +1,61 @@
-<div id='authContainer'>
+<div id="authContainer" class="signup-page">
 
-  <img src="http://www.foodsubs.com/Photos/tacoshell.jpg">
-  <form id='authCenter' name="signupForm" ng-submit="signup()" novalidate>
+  <nav id="sidebar-wrapper" class="sidebar-wrapper">
+    <div class="sidebar-nav">
+      <div class="navbar-header text-xs-center">
+        <!-- <div class="makertrailsLogo">MakerTrails</div> -->
+        <div class="logo"></div>
+      </div>
 
-    <input class="section" type="text" autocomplete="off" name="newusername" placeholder="username" ng-model="username" required>
+      <form id="authCenter" class="form-signin text-xs-center" name="signupForm" ng-submit="signup()" novalidate>
+        <h4>Sign Up</h4>
+        <div class="form-group">
+          <label for="newusername" class="sr-only">Username</label>
+          <input class="form-control" type="text" autocomplete="off" name="newusername" placeholder="username" ng-model="username" required>
+          <div  class="section" ng-messages="signupForm.newusername.$error" ng-if="signupForm.newusername.$dirty">
+            <p ng-message="required" class="section text-error">Username Required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="passwordname" class="sr-only">Password</label>
+          <input class="form-control" type="password" autocomplete="off" name="passwordname" placeholder="password" ng-model="password" required>
+          <div class="section" ng-messages="signupForm.passwordname.$error" ng-if="signupForm.passwordname.$dirty">
+            <p ng-message="required" class="section text-error" >Password Required</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="emailname" class="sr-only">Email</label>
+          <input class="form-control" type="email" autocomplete="off" name="emailname" placeholder="email" ng-model="email" required>
+          <div ng-messages="signupForm.emailname.$error" ng-if="signupForm.emailname.$dirty">
+            <p ng-show="signupForm.emailname.$invalid" class="text-error">Valid Email Required</p>
+            <p ng-message="required text-error" class="text-error">Email Required</p>
+          </div>
+        </div>
+        <div class="button-group text-xs-center">
+          <button class="button btn btn-lg btn-primary btn-block" type="submit" ng-disabled="signupForm.$invalid">Create Account</button>
+          <a ui-sref="login">Log In</a>
+        </div>
 
-    <div  class="section" ng-messages="signupForm.newusername.$error" ng-if="signupForm.newusername.$dirty">
-      <div class="section" ng-message="required">Username Required</div>
+      </form>
+
     </div>
+  </nav>
 
-    <input class="section" type="password" autocomplete="off" name="passwordname" placeholder="password" ng-model="password" required>
-
-    <div class="section" ng-messages="signupForm.passwordname.$error" ng-if="signupForm.passwordname.$dirty">
-      <div class="section" ng-message="required">Password Required</div>
-    </div>
-
-    <input class="section" type="email" autocomplete="off" name="emailname" placeholder="email" ng-model="email" required>
-
-    <div class="section" ng-messages="signupForm.emailname.$error" ng-if="signupForm.emailname.$dirty">
-      <div class="section" ng-message="required">Email Required</div>
-    </div>
-
-    <div class="section">
-      <button class="button" type="submit" ng-disabled="signupForm.$invalid">Create Account</button>
-    </div>
-
-    <div class="section">
-      <button class="button" ui-sref="login">Go back</button>
-    </div>
-
-  </form>
-
+  <footer class="footer-wrapper container">
+    <ul class="developers list-inline">
+      <li class="list-inline-item"><span>Built by:</span></li>
+      <li class="list-inline-item">Daniel De La Rosa <a href="https://github.com/dela1000" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/daniel-de-la-rosa-738763a" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+      <li class="list-inline-item">Nick Ivons <a href="https://github.com/Niicck" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/nickivons" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+      <li class="list-inline-item">Luis Gamero <a href="https://github.com/luisgamero" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/luis-gamero-967119108" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+      <li class="list-inline-item">Juan Schaar <a href="https://github.com/juancho1" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/juanschaar" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    </ul>
+    <ul class="developers list-inline">
+      <li class="list-inline-item"><span>Contributors:</span></li>
+      <li class="list-inline-item">VJ Aguilar <a href="https://github.com/shinyness" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/veejaye" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+      <li class="list-inline-item">Thomas Leupp <a href="https://github.com/Cygnus2112" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/thomasleupp" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+      <li class="list-inline-item">Joseph Martin <a href="https://github.com/jpranaymartin" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/jpranaymartin" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+      <li class="list-inline-item">Kaushik Sahoo <a href="https://github.com/kaushiksahoo2000" target="_blank"><span class="icon ion-social-github"></span></a> <a href="https://www.linkedin.com/in/kaushik-sahoo-39114274" target="_blank"><span class="icon ion-social-linkedin"><span></a></li>
+    </ul>
+  </footer>
+  
 </div>

@@ -11,6 +11,14 @@ exports.formatProgress = function(locations, progresses) {
   return locations
 }
 
+exports.zeroProgress = function(locations) {
+  for (var i=0; i < locations.length; i++) {
+    locations[i].dataValues.visited = false;
+    locations[i].dataValues.progress_id = 0;
+  }
+  return locations;
+};
+
 var decodeToken = exports.decodeToken = function(request){
   return jwt.decode(request.headers['makertrails-token'], 'magic-words');
 }
@@ -35,6 +43,10 @@ exports.checkUser = function(request, response, next) {
     response.status(401).send("No token detected")
   } else {
     if (isLoggedIn(token)){
+      var hash = jwt.decode(token, 'magic-words');
+      console.log("this isLoggedIn's hash line 38 in utils.js", hash);
+      request.session.user = hash.userId;
+      console.log("this is request.session.user line 41 in utils.js", request.session.user);
       next()
     } else {
       response.sendStatus(401);

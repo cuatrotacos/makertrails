@@ -8,7 +8,7 @@ module.exports = controllers = {
     get: function (request, response) {
       models.mapInfo.get(function (allMaps) {
         response.json({ allMaps });
-      })
+      });
     },
     post: function (request, response) {
       var newLocations = request.body;
@@ -18,12 +18,27 @@ module.exports = controllers = {
           response.json({ locations });
         })
       })
+    },
+    delete: function(request, response) {
+      models.mapInfo.delete(request.params.id, function() {
+        response.sendStatus(200);
+      });
+    },
+    getOne: function(request, response){
+      var mapId = request.params.id;
+      console.log("mapId",mapId);
+      models.location.get(mapId, function (locations) {
+        console.log(locations);
+        var formattedProgress = utils.zeroProgress(locations);
+        response.status(200).send(formattedProgress);
+      })
     }
   },
 
   userMaps: {
     get: function (request, response) {
       var userId = request.session.user;
+      console.log("this is userId in index.js line 32", userId);
       models.userMaps.get(userId, function (userMaps) {
         response.json( userMaps )
       })

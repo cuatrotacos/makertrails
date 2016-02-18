@@ -2,19 +2,25 @@ var Sequelize = require("sequelize");
 var buildMap = require("../test/buildMap.js").buildMap;
 var sequelize;
 
-// Use local DB
-// sequelize = new Sequelize("trails", "root", "");
-
-// Use real life DB
-sequelize = new Sequelize(
-  "cuatro_tacos",
-  "cuatrotacos",
-  "1Qaz2wsx3edc", {
-    "host": "mysqlcluster6.registeredsite.com",
-    "port": "3306"
-  }
-)
-
+if(process.env.DB_NAME){
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASS,
+    {
+      "host": process.env.DB_HOST,
+      "port": process.env.DB_PORT
+    }
+  );
+} else {
+  sequelize = new Sequelize(
+    "cuatro_tacos",
+    "root",
+    "", {
+      "host": "localhost"
+    }
+  );
+}
 
 var User = sequelize.define("user", {
   name: Sequelize.STRING,
@@ -34,6 +40,7 @@ var Map = sequelize.define("map", {
 
 var Location = sequelize.define("location", {
   name: Sequelize.STRING,
+  msg: Sequelize.STRING,
   lat: Sequelize.FLOAT(53),
   lon: Sequelize.FLOAT(53),
   map_id: Sequelize.INTEGER,
@@ -69,7 +76,7 @@ var Photo = sequelize.define("photo", {
   location_id: Sequelize.INTEGER,
   user_id: Sequelize.INTEGER,
   link: Sequelize.TEXT
-})
+});
 
 // User has many Maps, Map has one User
 Map.belongsTo(User, {
@@ -154,8 +161,8 @@ User.sync().then(function(){
         Review.sync().then(function(){
           Photo.sync().then(function(){
             buildMap();
-          })
-        })
+          });
+        });
       });
     });
   });

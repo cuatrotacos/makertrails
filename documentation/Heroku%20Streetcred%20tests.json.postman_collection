@@ -26,7 +26,7 @@
 		{
 			"id": "05164cf6-571a-9e58-31c6-b2a4a829a8c3",
 			"headers": "currentMap: 1\nContent-Type: application/json\nmakertrails-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiUGF0byJ9.Xoe3d822jHfj5179OpVtVYvsYPjisNgbn_mrSboPn9k\n",
-			"url": "http://makertrails.herokuapp.com/progress?mapId=1",
+			"url": "https://makertrailsv2.herokuapp.com/progress?mapId=1",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -45,7 +45,7 @@
 		{
 			"id": "33146b11-b55b-ec8e-aae8-20c4db3deb39",
 			"headers": "currentMap: 1\nContent-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/login",
+			"url": "https://makertrailsv2.herokuapp.com/login",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -65,7 +65,7 @@
 		{
 			"id": "418e2eef-96bb-f343-0241-00db40b965ba",
 			"headers": "currentMap: 1\nContent-Type: application/json\nmakertrails-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiUGF0byJ9.Xoe3d822jHfj5179OpVtVYvsYPjisNgbn_mrSboPn9k\n",
-			"url": "http://makertrails.herokuapp.com/progress",
+			"url": "https://makertrailsv2.herokuapp.com/progress",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "PUT",
@@ -85,7 +85,7 @@
 		{
 			"id": "73dbc5d5-5f65-d1d3-f4e8-e5698c7e1141",
 			"headers": "",
-			"url": "http://makertrails.herokuapp.com/progress?mapId=2",
+			"url": "https://makertrailsv2.herokuapp.com/progress?mapId=2",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -104,7 +104,7 @@
 		{
 			"id": "7b11a754-fff3-9a72-cf66-2c5169ddf727",
 			"headers": "currentMap: 1\nContent-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/signup",
+			"url": "https://makertrailsv2.herokuapp.com/signup",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -124,7 +124,7 @@
 		{
 			"id": "92b5a0db-2876-d2f5-ae67-544bea3537f6",
 			"headers": "currentMap: 1\nContent-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/review?locationId=5",
+			"url": "https://makertrailsv2.herokuapp.com/review?locationId=5",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -143,7 +143,7 @@
 		{
 			"id": "97ea7e03-2115-17b1-9d28-7db46694ae2d",
 			"headers": "",
-			"url": "http://makertrails.herokuapp.com/mapInfo",
+			"url": "https://makertrailsv2.herokuapp.com/mapInfo",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -162,7 +162,7 @@
 		{
 			"id": "994cb409-fc0a-39d3-d001-b656162d0780",
 			"headers": "Content-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/mapInfo",
+			"url": "https://makertrailsv2.herokuapp.com/mapInfo",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -182,7 +182,7 @@
 		{
 			"id": "9c8e53f6-82c6-6c2d-ed50-f6224fe5361d",
 			"headers": "currentMap: 1\nContent-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/login",
+			"url": "https://makertrailsv2.herokuapp.com/login",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -202,7 +202,7 @@
 		{
 			"id": "ba7eb6d4-ba66-2e20-c508-e620d7f4c227",
 			"headers": "",
-			"url": "http://makertrails.herokuapp.com/logout",
+			"url": "https://makertrailsv2.herokuapp.com/logout",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -221,7 +221,7 @@
 		{
 			"id": "d0f75674-1755-5c4f-4a5d-7b5bf78f9b61",
 			"headers": "currentMap: 1\nContent-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/review",
+			"url": "https://makertrailsv2.herokuapp.com/review",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -241,7 +241,7 @@
 		{
 			"id": "f384fb2f-0b30-33bb-5f6e-237f14d3ae6e",
 			"headers": "currentMap: 1\nContent-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/review",
+			"url": "https://makertrailsv2.herokuapp.com/review",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -261,7 +261,7 @@
 		{
 			"id": "f781d2f3-5a81-6377-6008-8ecd84815cb7",
 			"headers": "Content-Type: application/json\n",
-			"url": "http://makertrails.herokuapp.com/location?mapId=1",
+			"url": "https://makertrailsv2.herokuapp.com/location?mapId=1",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
