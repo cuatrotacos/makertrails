@@ -6,10 +6,10 @@ angular.module('App.login', [])
 
   $scope.openDemo = function () {
     var modalInstance = $uibModal.open({
-      animation: $scope.animationsEnabled,
+      animation: true,
       templateUrl: '../templates/demoModal.html',
       controller: 'DemoModalController',
-      size: large
+      size: "large"
     })
   }
 });
