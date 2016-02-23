@@ -104,10 +104,11 @@ NAVIGATION SIDEBAR
   display: block;
   text-indent: -9999px;
   margin-left: 12px;
+  margin-top: -40px;
   width: 200px;
-  height: 100px;
-  background: url("images/makertrails.svg");
-  background-size: 200px 100px;
+  height: 200px;
+  background: url("makertrailsLarge.png");
+  background-size: 200px 200px;
 }
 
 #sidebar-wrapper {
@@ -162,7 +163,7 @@ NAVIGATION SIDEBAR
 #sidebar-wrapper .navbar-header{
   margin-bottom: 15px;
   float: none;
-  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  font-family: 'Lobster', 'Trebuchet MS', Arial, sans-serif;
   font-size: 30px;
   width: 100%;
 }
