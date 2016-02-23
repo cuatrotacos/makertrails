@@ -6,7 +6,8 @@ angular.module("App", [
   'App.createMap',
   'App.viewMaps',
   'App.MakerMapController',
-  'ngMessages'
+  'ngMessages',
+  'App.demo'
   ])
 .run(function($rootScope){
   $rootScope.url = 'http://localhost:8000';
