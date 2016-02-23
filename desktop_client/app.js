@@ -6,8 +6,15 @@ angular.module("App", [
   'App.createMap',
   'App.viewMaps',
   'App.MakerMapController',
-  'ngMessages'
+  'ngMessages',
+  'App.demo',
+  'ui.bootstrap'
   ])
+.run(function($rootScope){
+  $rootScope.url = 'http://localhost:8000';
+  // $rootScope.url = 'https://still-sands-90078.herokuapp.com'
+  // $rootScope.url = 'https://makertrails.herokuapp.com'
+})
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
   // $locationProvider.html5Mode({
@@ -71,7 +78,7 @@ angular.module("App", [
     if (toState.name === "login" && AppFactory.authenticateFunction()) {
       event.preventDefault();
       $state.go('createNewMap');
-    }  
+    }
     if (toState.authenticate && !AppFactory.authenticateFunction()) {
       event.preventDefault();
       $state.go('login');

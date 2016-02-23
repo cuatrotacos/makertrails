@@ -1,13 +1,8 @@
 angular.module('App')
 .factory('MapFactory', MapFactory)
 
-// Switch between local and deployed server
-var url;
-//url = 'http://localhost:8000';
-// url = 'https://still-sands-90078.herokuapp.com'
- url = 'https://makertrailsv2.herokuapp.com'
-
-function MapFactory($http, $q){
+function MapFactory($http, $q, $rootScope){
+  var url = $rootScope.url;
   var markerWindow = new google.maps.InfoWindow();
   var mapFactory = {}
 
@@ -46,7 +41,7 @@ function MapFactory($http, $q){
 
     var content = '<p><strong>' + location.name + '</strong></p>' +
                   '<p>' + location.msg + '</p>';
-                
+
     marker.addListener('click', function() {
       markerWindow.setContent(content);
       markerWindow.open(map, marker);

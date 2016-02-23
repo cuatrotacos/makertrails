@@ -2,12 +2,9 @@ angular.module('App')
 
 .factory('MakerMapFactory', MakerMapFactory);
 
-var url;
-//url = 'http://localhost:8000';
-// url = 'http://still-sands-90078.herokuapp.com'
-url = 'https://makertrailsv2.herokuapp.com'
 
-function MakerMapFactory($http, $q, $state, $stateParams) {
+function MakerMapFactory($http, $q, $state, $stateParams, $rootScope) {
+  var url = $rootScope.url;
   var markerWindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
   var makerMapFactory = {};
@@ -39,7 +36,7 @@ function MakerMapFactory($http, $q, $state, $stateParams) {
   makerMapFactory.setMarkers = function(locations, map) {
 
     var markers = [];
-   
+
     locations.forEach(function(loc, i){
       var pos = new google.maps.LatLng(locations[i].lat, locations[i].lon);
       var marker = new google.maps.Marker({
@@ -62,7 +59,7 @@ function MakerMapFactory($http, $q, $state, $stateParams) {
         fillOpacity: 0.6,
         map: map
       });
-      
+
       var content = '<p><strong>' + locations[i].name + '</strong></p>' +
                       '<p>' + locations[i].msg + '</p>';
 
