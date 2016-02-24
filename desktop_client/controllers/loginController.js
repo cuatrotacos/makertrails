@@ -8,8 +8,7 @@ angular.module('App.login', [])
     var modalInstance = $uibModal.open({
       animation: true,
       templateUrl: '../templates/demoModal.html',
-      controller: 'DemoModalController',
-      size: "large"
+      windowClass: 'app-modal-window'
     })
   }
 });
