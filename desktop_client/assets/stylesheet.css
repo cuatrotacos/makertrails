@@ -104,10 +104,11 @@ NAVIGATION SIDEBAR
   display: block;
   text-indent: -9999px;
   margin-left: 12px;
+  margin-top: -40px;
   width: 200px;
-  height: 100px;
-  background: url("images/makertrails.svg");
-  background-size: 200px 100px;
+  height: 200px;
+  background: url("makertrailsLarge.png");
+  background-size: 200px 200px;
 }
 
 #sidebar-wrapper {
@@ -162,7 +163,7 @@ NAVIGATION SIDEBAR
 #sidebar-wrapper .navbar-header{
   margin-bottom: 15px;
   float: none;
-  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  font-family: 'Lobster', 'Trebuchet MS', Arial, sans-serif;
   font-size: 30px;
   width: 100%;
 }
@@ -314,4 +315,67 @@ DEMO MODAL
 
 #demo-button {
   margin: auto auto;
+  background: rgb(28,124,235)
+}
+.text-center {
+  text-align: center;
+}
+
+.description {
+  text-align: left;
+}
+
+.lobster {
+  font-family: 'Lobster', 'Trebuchet MS', Arial, sans-serif;
+}
+
+.demo-header {
+  font-family: 'Lobster', 'Trebuchet MS', Arial, sans-serif;
+  text-align: center;
+}
+.app-modal-window .modal-dialog {
+  width: 700px;
+}
+
+.col-1-3 {
+  width: 33.33%;
+}
+
+.mobile-container {
+  float: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mobile-wrapper {
+  float: none;
+  margin: 0 auto;
+}
+.mobile-wrapper {
+  margin: 0 auto;
+  position: relative;
+}
+
+.mobile-screenshot {
+  max-height: 300px;
+  float: none;
+  margin: 0 auto;
+}
+
+.text-left {
+  text-align: left;
+  font-size: .75em;
+}
+
+.desktop-wrapper {
+  text-align: center;
+  float: none;
+  margin: 0 auto;
+}
+
+.desktop-screenshot {
+  text-align: center;
+  float: none;
+  margin: 0 auto;
+  max-width: 500px;
 }
