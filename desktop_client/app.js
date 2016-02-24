@@ -7,7 +7,6 @@ angular.module("App", [
   'App.viewMaps',
   'App.MakerMapController',
   'ngMessages',
-  'App.demo',
   'ui.bootstrap'
   ])
 .run(function($rootScope){
