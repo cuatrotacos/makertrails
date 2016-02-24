@@ -6,7 +6,7 @@ function reviews($http, $ionicPopup) {
   var url;
   // url = 'http://localhost:8000';
   // url = 'http://still-sands-90078.herokuapp.com'
-  url = 'https://makertrailsv2.herokuapp.com'
+  url = 'https://makertrails.herokuapp.com'
 
   var submitReview = function (review, locationId, userId, rating) {
     console.log('inside Reviews.submitReview');
