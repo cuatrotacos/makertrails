@@ -4,9 +4,23 @@ angular.module("App", [
   'App.signup',
   'App.logout',
   'App.createMap',
-  'ngMessages'
+  'App.viewMaps',
+  'App.MakerMapController',
+  'ngMessages',
+  'ui.bootstrap'
   ])
-.config(function($stateProvider, $urlRouterProvider){
+.run(function($rootScope){
+  $rootScope.url = 'http://localhost:8000';
+  // $rootScope.url = 'https://still-sands-90078.herokuapp.com'
+  // $rootScope.url = 'https://makertrails.herokuapp.com'
+})
+.config(function($stateProvider, $urlRouterProvider, $httpProvider){
+
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false
+  // });
+
   $stateProvider
     .state('login',{
       url: '/login',
@@ -26,20 +40,47 @@ angular.module("App", [
       controller: 'MapController',
       authenticate: true
     })
-  $urlRouterProvider
-    .otherwise('/login');
+    .state('viewMaps',{
+      url:'/viewMaps',
+      templateUrl: 'templates/viewMaps.html',
+      controller: 'ViewMapsController',
+      authenticate: true
+    })
+    .state('makerMap', {
+      url: '/makerMap/:mapID',
+      templateUrl: 'templates/makerMap.html',
+      controller: 'MakerMapController',
+      params: {
+        'mapID': null
+      }
+    })
+
+  $urlRouterProvider.otherwise('/login');
+  $httpProvider.interceptors.push('AttachTokens');
 })
 
+.factory('AttachTokens', function ($window) {
+  var attach = {
+    request: function (object) {
+      var jwt = $window.localStorage.getItem('makertrails-token');
+      if (jwt) {
+        object.headers['makertrails-token'] = jwt;
+      }
+      object.headers['Allow-Control-Allow-Origin'] = '*';
+      return object;
+    }
+  };
+  return attach;
+})
 .run(function ($rootScope, $state, AppFactory, $window) {
   $rootScope.$on('$stateChangeStart', function (event, toState) {
-    if (!toState.authenticate || AppFactory.authenticateFunction()) {
-      return;
+    if (toState.name === "login" && AppFactory.authenticateFunction()) {
+      event.preventDefault();
+      $state.go('createNewMap');
     }
-    event.preventDefault();
-    if (toState.authenticate) {
-      $state.go('login')
-      return
+    if (toState.authenticate && !AppFactory.authenticateFunction()) {
+      event.preventDefault();
+      $state.go('login');
     }
   });
 });
-

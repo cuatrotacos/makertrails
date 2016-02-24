@@ -1,13 +1,9 @@
 angular.module('App')
 .factory('MapFactory', MapFactory)
 
-// Switch between local and deployed server
-var url;
-// url = 'http://localhost:8000';
-// url = 'https://still-sands-90078.herokuapp.com'
-url = 'https://makertrails.herokuapp.com'
-
-function MapFactory($http, $q){
+function MapFactory($http, $q, $rootScope){
+  var url = $rootScope.url;
+  var markerWindow = new google.maps.InfoWindow();
   var mapFactory = {}
 
   mapFactory.removeLocation = function(selectedLocations, markers, index, map){
@@ -42,26 +38,21 @@ function MapFactory($http, $q){
       editable: true,
       map: map
     });
-    var markerWindow = new google.maps.InfoWindow({
-      content : location.name
-    })
+
+    var content = '<p><strong>' + location.name + '</strong></p>' +
+                  '<p>' + location.msg + '</p>';
+
     marker.addListener('click', function() {
-      markerWindow.open(map, marker)
-    })
+      markerWindow.setContent(content);
+      markerWindow.open(map, marker);
+    });
     marker.circle = circle;
     marker.markerWindow = markerWindow;
     return marker;
-  }
-
-  mapFactory.renameLocation = function (selectedLocations, markers, index, newName) {
-    selectedLocations[index].name = newName;
-    markers[index].title = newName;
-    markers[index].markerWindow.setContent(newName);
-    selectedLocations[index].editing = false;
-  }
+  };
 
   mapFactory.createMap = function (mapInfo, selectedLocations) {
-    var dfr = $q.defer()
+    var dfr = $q.defer();
       $http ({
         method: 'POST',
         url: url + '/mapInfo',
@@ -70,14 +61,41 @@ function MapFactory($http, $q){
           locationsInfo: selectedLocations
         }
       }).then(function (success) {
-        dfr.resolve(success)
+        dfr.resolve(success);
       },
       function (err) {
-        console.log("+++ 57 mapFactory.js err: ", err)
-        dfr.reject("Map not created")
-      })
+        console.log("+++ 57 mapFactory.js err: ", err);
+        dfr.reject("Map not created");
+      });
       return dfr.promise;
-  }
+  };
+
+
+  mapFactory.getUserMaps = function(){
+      return $http ({
+        method: 'GET',
+        url: '/userMaps'
+      }).then(function(resp){
+        console.log("userMaps response (with locations): ",resp);
+        return resp;
+      }, function(err){
+        console.log("this is getUserMaps error", err);
+      });
+  };
+
+  mapFactory.deleteUserMaps = function(id){
+      return $http ({
+        method: 'DELETE',
+        url: '/mapInfo/' + id,
+      }).then(function(resp){
+        return resp;
+      }, function(err){
+        console.log("this is deleteUserMaps error", err);
+      });
+  };
+
 
   return mapFactory;
+
+
 }

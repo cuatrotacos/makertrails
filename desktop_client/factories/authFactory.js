@@ -1,12 +1,7 @@
 angular.module('App')
-  .factory('AppFactory', function($http, $state, $window){
+  .factory('AppFactory', function($http, $state, $window, $rootScope){
 
-    // Switch between local and deployed server
-    var url;
-    // url = 'http://localhost:8000';
-    // url = 'https://still-sands-90078.herokuapp.com'
-    url = 'https://makertrails.herokuapp.com'
-
+    var url = $rootScope.url;
 
     function logout () {
       window.localStorage.removeItem("makertrails-token");

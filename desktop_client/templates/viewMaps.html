@@ -1,0 +1,32 @@
+<nav id="sidebar-wrapper" class="sidebar-wrapper">
+  <div class="sidebar-nav">
+    <div class="navbar-header text-xs-center">
+      <div class="makertrailsLogo">MakerTrails</div>
+      <div class="logo"></div>
+    </div>
+    <div class="links text-xs-center">
+      <button ui-sref="createNewMap" id="viewtrails" class="all-trails button btn btn-large btn-primary btn-block">Create a Map</button>
+    </div>
+    <ul class="navbar-inner-bottom navbar-inner list-unstyled text-xs-center">
+      <li class="logout"><a id="logout" class="logout navbar-button" ng-controller="LogoutController" ng-click="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="push card-columns">
+<div class="col-md-3" ng-repeat="map in userMapData">
+  <div class="card card-block">
+    <div class="card-block">
+      <h4 class="card-title">{{map.name}}</h4>
+      <p>{{map.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" ng-repeat="location in map.locations.fulfillmentValue">{{location.name}}</li>
+    </ul>
+    <div class="form-group-row"><br>
+      <button type="button" class="btn btn-primary" ng-click="selectMap(map)">View Map</button>
+      <span type="button" class="button-remove icon ion-trash-a pull-xs-right" value="Remove" data-ng-click="removeMap($index, map.id)"></span>
+    </div>
+  </div>
+</div>
+</div>

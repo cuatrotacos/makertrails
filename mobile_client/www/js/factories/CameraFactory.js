@@ -6,7 +6,7 @@ function photo($http, $q, $ionicPopup) {
   var url;
   // url = 'http://localhost:8000';
   // url = 'http://still-sands-90078.herokuapp.com'
-  url = 'http://makertrails.herokuapp.com'
+  url = 'https://makertrails.herokuapp.com'
 
   var storeImage = function(locationId, userId, imageData) {
     $http({
@@ -56,4 +56,3 @@ function photo($http, $q, $ionicPopup) {
     retrievePhotos: retrievePhotos
   }
 }
-

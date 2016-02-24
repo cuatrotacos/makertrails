@@ -7,7 +7,7 @@ function makerMapFactory($http, $q, $state, $ionicLoading, $ionicPopup, $statePa
   var url;
   // url = 'http://localhost:8000';
   // url = 'http://still-sands-90078.herokuapp.com'
-  url = 'http://makertrails.herokuapp.com'
+  url = 'https://makertrails.herokuapp.com'
 
   var renderMap = function() {
     //displays loading animation

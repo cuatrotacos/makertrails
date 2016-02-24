@@ -5,7 +5,7 @@ angular.module('app.SelectMapFactory', [])
   var url;
   // url = 'http://localhost:8000';
   // url = 'http://still-sands-90078.herokuapp.com'
-  url = 'http://makertrails.herokuapp.com'
+  url = 'https://makertrails.herokuapp.com'
   function displayMaps() {
     return $http({
         method: "GET",
